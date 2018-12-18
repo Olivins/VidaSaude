@@ -1,0 +1,22 @@
+package com.pi4.vidasaude.service;
+
+import com.pi4.vidasaude.Domain.Especialidade;
+import com.pi4.vidasaude.Domain.Medico;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
+public interface InterfaceDeServicos {
+
+    @GET("/especialidades.php")
+    Call<List<Especialidade>> especialidades();
+
+    @GET("/medicos.php")
+    Call<List<Medico>> medicos(); //
+
+
+
+}

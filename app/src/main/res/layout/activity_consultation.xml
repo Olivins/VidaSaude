@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConsultationActivity">
+
+    <TextView
+        android:id="@+id/labelnome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Nome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nome"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints=""
+        android:hint="Digite o nome "
+        android:inputType=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelnome"
+        tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/labeltelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Telefone"
+        app:layout_constraintStart_toStartOf="@+id/nome"
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
+
+    <EditText
+        android:id="@+id/telefone"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="Digite o telefone"
+        app:layout_constraintStart_toStartOf="@+id/labeltelefone"
+        app:layout_constraintTop_toBottomOf="@+id/labeltelefone"
+        android:inputType="" />
+
+    <TextView
+        android:id="@+id/labeldata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Data"
+        app:layout_constraintStart_toStartOf="@+id/telefone"
+        app:layout_constraintTop_toBottomOf="@+id/telefone" />
+
+    <EditText
+        android:id="@+id/data"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Digite a data desejada"
+        android:inputType=""
+        app:layout_constraintStart_toStartOf="@+id/labeldata"
+        app:layout_constraintTop_toBottomOf="@+id/labeldata"
+        android:autofillHints="" />
+
+
+    <TextView
+        android:id="@+id/labelhorario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Horario"
+        app:layout_constraintStart_toStartOf="@+id/data"
+        app:layout_constraintTop_toBottomOf="@+id/data" />
+
+    <EditText
+        android:id="@+id/horario"
+        android:layout_width="300dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:hint="Digite o horario desejado "
+        app:layout_constraintStart_toStartOf="@+id/labelhorario"
+        app:layout_constraintTop_toBottomOf="@+id/labelhorario"
+        tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/aviso"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="Vamos verificar a disponibilidade e entrar em contato com você!"
+        app:layout_constraintStart_toStartOf="@+id/horario"
+        app:layout_constraintTop_toBottomOf="@+id/horario"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button"
+        android:onClick="solicitarConsulta"
+        android:text="Solicitar Consulta"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aviso"
+        app:layout_constraintVertical_bias="0.189" />
+
+
+
+</android.support.constraint.ConstraintLayout>
