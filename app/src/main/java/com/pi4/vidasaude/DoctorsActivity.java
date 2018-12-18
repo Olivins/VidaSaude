@@ -29,7 +29,7 @@ public class DoctorsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctors);
+        listView = new ListView(this);
         int idEspecialidade = Integer.parseInt(getIntent().getStringExtra("idEspecialidade"));
         Toast.makeText(this, "ID = " + idEspecialidade, Toast.LENGTH_LONG).show();
         consultaMedicos(idEspecialidade);
@@ -42,14 +42,9 @@ public class DoctorsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Medico>> call, Response<List<Medico>> response) {
                 listaDeMedicos = response.body();
-                List<String> lista = new ArrayList<>();
-                for (Medico medico : listaDeMedicos) {
-                    lista.add(medico.getMED_NOME());
-                    //lista.add(medico.getMedCrm());
-                }
-
+                EspecialidadesAdapeter especialidadesAdapeter =  new EspecialidadesAdapeter(DoctorsActivity.this,listaDeMedicos);
                 setContentView(listView);
-                listView.setAdapter(new ArrayAdapter<>(DoctorsActivity.this, android.R.layout.simple_list_item_1, lista));
+                listView.setAdapter(especialidadesAdapeter);
             }
 
             @Override

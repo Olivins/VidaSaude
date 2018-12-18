@@ -6,44 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".DoctorsActivity">
 
-
-    <ListView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/nome_tv"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/nomemedico"
-        android:textSize="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/consulta_bt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- <TextView
-        android:id="@+id/crm"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/crm"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:textSize="16dp"/>
-
-
     <Button
+        android:id="@+id/consulta_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:text="Consulta"
-        app:layout_constraintBottom_toBottomOf="@+id/crm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        android:onClick="consultaServidor"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/custom_button2"
+        android:text="Consulta"
+        android:textColor="#ffffff"
         android:textSize="12dp"
-        android:textColor="#ffffff"/>
-     -->
+        app:layout_constraintBottom_toBottomOf="@+id/crm_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nome_tv" />
 
+    <TextView
+        android:id="@+id/crm_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/consulta_bt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_tv" />
 
 </android.support.constraint.ConstraintLayout>
