@@ -7,6 +7,15 @@ public class Medico implements Serializable {
     private String ID;
     private String MED_NOME;
     private String MED_CRM;
+    private String FK_ESP;
+
+    public String getFK_ESP() {
+        return FK_ESP;
+    }
+
+    public void setFK_ESP(String FK_ESP) {
+        this.FK_ESP = FK_ESP;
+    }
 
     public String getID() {
         return ID;

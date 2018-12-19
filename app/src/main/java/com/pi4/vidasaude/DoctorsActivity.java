@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pi4.vidasaude.Adapters.EspecialidadesAdapeter;
 import com.pi4.vidasaude.Domain.Medico;
+import com.pi4.vidasaude.service.MedicoService;
 import com.pi4.vidasaude.service.RetrofitService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -30,14 +30,14 @@ public class DoctorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         listView = new ListView(this);
-        int idEspecialidade = Integer.parseInt(getIntent().getStringExtra("idEspecialidade"));
-        Toast.makeText(this, "ID = " + idEspecialidade, Toast.LENGTH_LONG).show();
+        String idEspecialidade = getIntent().getStringExtra("idEspecialidade");
+
         consultaMedicos(idEspecialidade);
     }
 
-    private void consultaMedicos(int idEspecialidade) {
-        int idEsp = idEspecialidade;
-        Call<List<Medico>> chamada = RetrofitService.getServico().medicos();
+    private void consultaMedicos(String idEspecialidade) {
+        Toast.makeText(this, "ID = " + idEspecialidade, Toast.LENGTH_LONG).show();
+        Call<List<Medico>> chamada = RetrofitService.getServico().medicosById(idEspecialidade);
         chamada.enqueue(new Callback<List<Medico>>() {
             @Override
             public void onResponse(Call<List<Medico>> call, Response<List<Medico>> response) {
@@ -52,16 +52,5 @@ public class DoctorsActivity extends AppCompatActivity {
                 Log.i("teste", t.getMessage());
             }
         });
-    }
-
-    public void consultaServidor(String idMedico) {
-        Intent i = new Intent(this, ConsultationActivity.class);
-        i.putExtra("idMedico", idMedico);
-        startActivity(i);
-    }
-
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String idMedico = listaDeMedicos.get(position).getID();
-        consultaServidor(idMedico);
     }
 }

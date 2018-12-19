@@ -1,4 +1,4 @@
-package com.pi4.vidasaude;
+package com.pi4.vidasaude.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pi4.vidasaude.ConsultationActivity;
 import com.pi4.vidasaude.Domain.Medico;
+import com.pi4.vidasaude.R;
 
 import java.util.List;
 
-class EspecialidadesAdapeter extends BaseAdapter {
+public class EspecialidadesAdapeter extends BaseAdapter {
     List<Medico> lista;
     Context ctx;
 
@@ -55,6 +57,8 @@ class EspecialidadesAdapeter extends BaseAdapter {
             public void onClick(View v) {
                 Toast.makeText(ctx, "Médico selecionado: "+ medico.getMED_NOME(), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(ctx,ConsultationActivity.class);
+                String idMedico = lista.get(position).getID();
+                i.putExtra("idMedico", idMedico);
                 ctx.startActivity(i);
             }
         });

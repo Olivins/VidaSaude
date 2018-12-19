@@ -8,6 +8,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface InterfaceDeServicos {
 
@@ -16,6 +17,10 @@ public interface InterfaceDeServicos {
 
     @GET("/medicos.php")
     Call<List<Medico>> medicos(); //
+
+    @GET("/{id}.php")
+    Call<List<Medico>> medicosById(@Path("id") String idEspecialidade); //
+
 
 
 
