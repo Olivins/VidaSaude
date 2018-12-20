@@ -19,6 +19,12 @@ public interface InterfaceDeServicos {
     Call<List<Medico>> medicos(); //
 
     @GET("/{id}.php")
-    Call<List<Medico>> medicosById(@Path("id") String idEspecialidade); //
+    Call<List<Medico>> medicosById(@Path("id") String idEspecialidade); //muito errado
+
+    @GET("/medicos_especialidade.php?id={id}")
+    Call<List<Medico>> medicosByEspecialidade(@Path("id") String idEspecialidade); //
+
+    @GET("/medicos_id.php?id={id}")
+    Call<Medico> medicoById(@Path("id") String id); //
 
 }
