@@ -8,19 +8,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.pi4.vidasaude.Domain.Especialidade;
 import com.pi4.vidasaude.service.RetrofitService;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class EspecialityActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView listView;
     List<Especialidade> listaDeEspecialidades;
@@ -28,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listView = new ListView(MainActivity.this);
+        listView = new ListView(EspecialityActivity.this);
         listView.setOnItemClickListener(this);
         consultaEspecialidades();
     }
@@ -46,12 +43,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
 
                 setContentView(listView);
-                listView.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, lista));
+                listView.setAdapter(new ArrayAdapter<String>(EspecialityActivity.this, android.R.layout.simple_list_item_1, lista));
             }
 
             @Override
             public void onFailure(Call<List<Especialidade>> call, Throwable t) {
                 Log.i("teste", t.getMessage());
+                mostrarPlaceholder();
             }
         });
     }
@@ -60,8 +58,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String idEspecialidade = listaDeEspecialidades.get(position).getID();
+        String nomeEspecialidade = listaDeEspecialidades.get(position).getESP_NOME();
+
         Intent i = new Intent(this, DoctorsActivity.class);
         i.putExtra("idEspecialidade",idEspecialidade);
+        i.putExtra("nomeEspecialidade",nomeEspecialidade);
+        startActivity(i);
+    }
+
+    public void mostrarPlaceholder() {
+        Intent i = new Intent(this, UnavailableServiceActivity.class);
         startActivity(i);
     }
 }

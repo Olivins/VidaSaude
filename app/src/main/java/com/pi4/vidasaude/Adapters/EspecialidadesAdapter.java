@@ -16,11 +16,11 @@ import com.pi4.vidasaude.R;
 
 import java.util.List;
 
-public class EspecialidadesAdapeter extends BaseAdapter {
+public class EspecialidadesAdapter extends BaseAdapter {
     List<Medico> lista;
     Context ctx;
 
-    public EspecialidadesAdapeter(Context ctx, List<Medico> lista) {
+    public EspecialidadesAdapter(Context ctx, List<Medico> lista) {
         this.lista = lista;
         this.ctx = ctx;
     }

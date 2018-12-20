@@ -5,15 +5,17 @@
     <string name="nomemedico">Diogo teste</string>
     <string name="crm">0000000</string>
     <string name="labelnome">Nome</string>
-    <string name="nome"></string>
+    <string name="nome">Digite o nome</string>
     <string name="labeltelefone">Telefone</string>
-    <string name="telefone"></string>
+    <string name="telefone">(00) 00000 0000</string>
     <string name="labeldata">Data</string>
     <string name="data"></string>
     <string name="labelhorario">Horário</string>
     <string name="horario"></string>
-
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="botaodata">Escolher Data</string>
+    <string name="botaohora">Escolher hora</string>
+    <string name="botaoconsulta">Solicitar Consulta</string>
 </resources>

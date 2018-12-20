@@ -16,7 +16,7 @@ public class FinalActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
     public void voltarPrincipal(View view) {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, EspecialityActivity.class);
         startActivity(i);
     }
 
