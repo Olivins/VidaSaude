@@ -29,7 +29,7 @@ public class DoctorsActivity extends AppCompatActivity {
         listView = new ListView(this);
         String idEspecialidade = getIntent().getStringExtra("idEspecialidade");
         String nomeEspecialidade = getIntent().getStringExtra("nomeEspecialidade");
-
+        setTitle(nomeEspecialidade);
         consultaMedicos(idEspecialidade, nomeEspecialidade);
     }
 

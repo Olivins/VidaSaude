@@ -21,7 +21,4 @@ public interface InterfaceDeServicos {
     @GET("/{id}.php")
     Call<List<Medico>> medicosById(@Path("id") String idEspecialidade); //
 
-
-
-
 }

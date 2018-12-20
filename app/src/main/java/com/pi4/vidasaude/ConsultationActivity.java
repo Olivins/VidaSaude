@@ -3,15 +3,26 @@ package com.pi4.vidasaude;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.GridLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.pi4.vidasaude.Domain.Medico;
+import com.pi4.vidasaude.service.RetrofitService;
+
 import java.util.Calendar;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ConsultationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -21,11 +32,53 @@ public class ConsultationActivity extends AppCompatActivity implements AdapterVi
     Calendar c;
     DatePickerDialog dpd;
     TimePickerDialog tpd;
+    Medico medico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultation);
+        String idMedico = getIntent().getStringExtra("idMedico");
+        consultaDadosMedico(idMedico);
+    }
+
+    private void consultaDadosMedico(String idMedico) {
+        Call<List<Medico>> listaDeMedicos = RetrofitService.getServico().medicos();
+        listaDeMedicos.enqueue(new Callback<List<Medico>>() {
+            @Override
+            public void onResponse(Call<List<Medico>> call, Response<List<Medico>> response) {
+                List<Medico> lista = response.body();
+                for (Medico medico : lista) {
+                    if (medico.getID().equals(idMedico))
+                        ConsultationActivity.this.medico = medico;
+                }
+                //consulta especialidades. O correto seria ter um webservice que retorna dados de um médico tipo medicoById
+                Call<List<Medico>> listaDeEspecialidades = RetrofitService.getServico().medicos();
+                listaDeEspecialidades.enqueue(new Callback<List<Medico>>() {
+                    @Override
+                    public void onResponse(Call<List<Medico>> call, Response<List<Medico>> response) {
+                        ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.INVISIBLE);
+                        ((GridLayout) findViewById(R.id.dados_medico)).setVisibility(View.VISIBLE);
+                        ((TextView) findViewById(R.id.nomemedico)).setText(medico.getMED_NOME());
+                        ((TextView) findViewById(R.id.crmmedico)).setText(medico.getMED_CRM());
+                        ((TextView) findViewById(R.id.especialidademedico)).setText(medico.get);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Medico>> call, Throwable t) {
+
+                    }
+                });
+            }
+
+
+            @Override
+            public void onFailure(Call<List<Medico>> call, Throwable t) {
+
+            }
+        });
+
     }
 
     public void solicitarConsulta(View view) {
@@ -45,9 +98,11 @@ public class ConsultationActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 //TextView data = (TextView) findViewById(R.id.data);
-                btnData.setText( day + "/" + month + "/" + year);
-            };
-        },day, month, year);
+                btnData.setText(day + "/" + month + "/" + year);
+            }
+
+            ;
+        }, day, month, year);
         dpd.setTitle("Select Date");
 
         c.setTimeInMillis(c.getTimeInMillis());
@@ -76,7 +131,7 @@ public class ConsultationActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 //TextView hora = (TextView) findViewById(R.id.hora);
-                btnHora.setText( hour + ":" + minute);
+                btnHora.setText(hour + ":" + minute);
             }
         }, hour, minute, true);//Yes 24 hour time
         tpd.setTitle("Select Time");
