@@ -49,8 +49,6 @@ public class DoctorsActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Medico>> call, Throwable t) {
                 Log.i("teste", t.getMessage());
-                Intent i = new Intent(DoctorsActivity.this, UnavailableServiceActivity.class);
-                startActivity(i);
                 mostrarPlaceholder();
             }
         });

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@drawable/custom_button2"
-        android:text="Consulta"
+        android:text="Agendar"
         android:textColor="#ffffff"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/crm_tv"
