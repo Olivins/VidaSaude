@@ -41,51 +41,19 @@ public class ConsultationActivity extends AppCompatActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultation);
         String idMedico = getIntent().getStringExtra("idMedico");
-        consultaDadosMedico(idMedico);
+        String nomeMedico = getIntent().getStringExtra("nomeMedico");
+        String crmMedico = getIntent().getStringExtra("crmMedico");
+        String nomeEspecialidade = getIntent().getStringExtra("nomeEspecialidade");
+        insereDadosMedico(nomeMedico,crmMedico,nomeEspecialidade);
     }
 
-    private void consultaDadosMedico(String idMedico) {
-        Call<List<Medico>> listaDeMedicos = RetrofitService.getServico().medicos();
-        listaDeMedicos.enqueue(new Callback<List<Medico>>() {
-            @Override
-            public void onResponse(Call<List<Medico>> call, Response<List<Medico>> response) {
-                List<Medico> lista = response.body();
-                for (Medico medico : lista) {
-                    if (medico.getID().equals(idMedico))
-                        ConsultationActivity.this.medico = medico;
-                }
-                //consulta especialidades. O correto seria ter um webservice que retorna dados de um médico tipo medicoById
-                Call<List<Especialidade>> listaDeEspecialidades = RetrofitService.getServico().especialidades();
-                listaDeEspecialidades.enqueue(new Callback<List<Especialidade>>() {
-                    @Override
-                    public void onResponse(Call<List<Especialidade>> call, Response<List<Especialidade>> response) {
-                        List<Especialidade> lista = response.body();
-                        for (Especialidade especialidade : lista) {
-                            if (especialidade.getID().equals(medico.getFK_ESP()))
-                                ConsultationActivity.this.especialidade = especialidade;
-                        }
+    private void insereDadosMedico(String nome, String crm, String especialidade) {
 
-                        ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.INVISIBLE);
-                        ((GridLayout) findViewById(R.id.dados_medico)).setVisibility(View.VISIBLE);
-                        ((TextView) findViewById(R.id.nomemedico)).setText(medico.getMED_NOME());
-                        ((TextView) findViewById(R.id.crmmedico)).setText(medico.getMED_CRM());
-                        ((TextView) findViewById(R.id.especialidademedico)).setText(especialidade.getESP_NOME());
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Especialidade>> call, Throwable t) {
-
-                    }
-                });
-            }
-
-
-            @Override
-            public void onFailure(Call<List<Medico>> call, Throwable t) {
-
-            }
-        });
+        ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.INVISIBLE);
+        ((GridLayout) findViewById(R.id.dados_medico)).setVisibility(View.VISIBLE);
+        ((TextView) findViewById(R.id.nomemedico)).setText(nome);
+        ((TextView) findViewById(R.id.crmmedico)).setText(crm);
+        ((TextView) findViewById(R.id.especialidademedico)).setText(especialidade);
 
     }
 

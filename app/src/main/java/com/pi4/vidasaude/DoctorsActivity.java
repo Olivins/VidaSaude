@@ -41,7 +41,7 @@ public class DoctorsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Medico>> call, Response<List<Medico>> response) {
                 listaDeMedicos = response.body();
-                EspecialidadesAdapter especialidadesAdapter =  new EspecialidadesAdapter(DoctorsActivity.this,listaDeMedicos);
+                EspecialidadesAdapter especialidadesAdapter =  new EspecialidadesAdapter(DoctorsActivity.this,listaDeMedicos,nomeEspecialidade);
                 setContentView(listView);
                 listView.setAdapter(especialidadesAdapter);
             }

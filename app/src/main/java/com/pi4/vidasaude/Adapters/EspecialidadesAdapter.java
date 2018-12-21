@@ -19,10 +19,12 @@ import java.util.List;
 public class EspecialidadesAdapter extends BaseAdapter {
     List<Medico> lista;
     Context ctx;
+    String nomeEspecialidade;
 
-    public EspecialidadesAdapter(Context ctx, List<Medico> lista) {
+    public EspecialidadesAdapter(Context ctx, List<Medico> lista, String nomeEspecialidade) {
         this.lista = lista;
         this.ctx = ctx;
+        this.nomeEspecialidade = nomeEspecialidade;
     }
 
     @Override
@@ -58,7 +60,12 @@ public class EspecialidadesAdapter extends BaseAdapter {
                 Toast.makeText(ctx, "Médico selecionado: "+ medico.getMED_NOME(), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(ctx,ConsultationActivity.class);
                 String idMedico = lista.get(position).getID();
+                String crmMedico = lista.get(position).getMED_CRM();
+                String nomeMedico = lista.get(position).getMED_NOME();
                 i.putExtra("idMedico", idMedico);
+                i.putExtra("crmMedico", crmMedico);
+                i.putExtra("nomeMedico", nomeMedico);
+                i.putExtra("nomeEspecialidade", nomeEspecialidade);
                 ctx.startActivity(i);
             }
         });
