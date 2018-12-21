@@ -18,13 +18,13 @@ public interface InterfaceDeServicos {
     @GET("/medicos.php")
     Call<List<Medico>> medicos(); //
 
-    @GET("/{id}.php")
-    Call<List<Medico>> medicosById(@Path("id") String idEspecialidade); //muito errado
+    /*@GET("/{id}.php")
+    Call<List<Medico>> medicosById(@Path("id") String idEspecialidade); //muito errado*/
 
     @GET("/medicos_especialidade.php?id={id}")
-    Call<List<Medico>> medicosByEspecialidade(@Path("id") String idEspecialidade); //
+    Call<List<Medico>> medicosByEspecialidade(@Path("id") String idEspecialidade);
 
-    @GET("/medicos_id.php?id={id}")
-    Call<Medico> medicoById(@Path("id") String id); //
+    @GET("/medicosById.php")
+    Call<List<Medico>> medicosById(@Query("id") String id); //recebe Query e converte em GET no endpoint
 
 }
